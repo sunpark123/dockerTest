@@ -2,14 +2,14 @@ name: Build and Push Docker Image (Spring Boot)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # main 브랜치에 푸시 시 실행
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
@@ -24,5 +24,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
+          context: .  # Dockerfile이 있는 루트 경로
+          file: Dockerfile  # Dockerfile 경로 지정
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/springboot-app:latest
