@@ -1,8 +1,8 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Image (Spring Boot)
 
 on:
   push:
-    branches: [ main ]  # main 브랜치에 push 시 실행
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,4 +25,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/springboot-app:latest
